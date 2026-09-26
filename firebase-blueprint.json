@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HabitFlow Database Blueprint",
+  "description": "Firestore schema for HabitFlow habit tracking, user gamification, mood logs, and completion history",
+  "collections": {
+    "users": {
+      "path": "users/{userId}",
+      "description": "User profile, XP, level, settings, and badge progress",
+      "fields": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "xp": { "type": "number" },
+        "level": { "type": "number" },
+        "totalCompletions": { "type": "number" },
+        "currentStreak": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "unlockedBadges": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "habits": {
+      "path": "habits/{habitId}",
+      "description": "Habits created and managed by the user",
+      "fields": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "frequency": { "type": "string" },
+        "targetDays": { "type": "array" },
+        "targetCount": { "type": "number" },
+        "unit": { "type": "string" },
+        "reminderTime": { "type": "string" },
+        "currentStreak": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "totalCompletions": { "type": "number" },
+        "isArchived": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "habitLogs": {
+      "path": "habitLogs/{logId}",
+      "description": "Daily completion logs for each habit",
+      "fields": {
+        "userId": { "type": "string" },
+        "habitId": { "type": "string" },
+        "date": { "type": "string" },
+        "completed": { "type": "boolean" },
+        "count": { "type": "number" },
+        "notes": { "type": "string" },
+        "completedAt": { "type": "string" }
+      }
+    },
+    "moodLogs": {
+      "path": "moodLogs/{moodLogId}",
+      "description": "Daily mood, energy, and reflection entries",
+      "fields": {
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "mood": { "type": "string" },
+        "energy": { "type": "number" },
+        "notes": { "type": "string" },
+        "tags": { "type": "array" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  }
+}
